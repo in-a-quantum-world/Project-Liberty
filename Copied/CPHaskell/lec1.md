@@ -1,4 +1,4 @@
-#### **First Haskell Lecture!!**
+# **First Haskell Lecture!!**
 
 Intentional vs Extensional
 
@@ -93,9 +93,84 @@ Two :: Int -> Int
 Two _ = 2
 ```
 
+```Haskell
+square :: Int -> Int
+square x = x * x
+```
 
 
 
+#### Multiple arguments
+
+Functions can be given "multiple arguments." In ghci, these are written separated by a space, after the function name
+
+```Haskell
+area :: Int -> Int -> Int --multiiple arrows written between the argumetns
+area w h = w * h
+```
+
+New operations can also be defined. This shows how to write 2 argument functions like mod :: Int -> Int -> Int by surrounding it in backticks
+
+```Haskell
+(%) :: Int -> Int -> Int
+x % y = x `mod` y
+```
+
+
+
+## Pattern Matching
+
+Sometimes we must scrutinise the input to decide what needs to be done next (extentional function)
+
+```Haskell
+dirac :: Int -> Int
+dirac 0 = 1
+dirac n = 0
+```
+
+Sinc function is an example of a function that uses pattern matching. For input 0 it returns 1, else it returns sin(x)/x
+
+```Haskell
+sinc :: Double -> Double
+sinc 0 = 1
+sinc x = sin x / x
+```
+
+
+#### Short Circuiting
+
+Short circuiting exploits pattern matching behaviour to obtain a faster definition.
+
+```Haskell
+False && _ = False
+_ && x = x
+
+--alternatively
+True && _ = x
+_ && _ = False --underscore is an unnamed term (could have been x,y,z)
+```
+
+
+
+### Conditionals and Guards
+
+Pattern matching works well if there are npt tto many cases. If we need a predicate we use a conditional or a guard.
+
+```Haskell
+abs :: Int -> Int
+abs x = if x < 0 then negate x else :
+```
+
+
+You can use a guard to make it easier.
+
+```Haskell
+tent :: Double -> Double
+tent x | x < 0 = 0
+	   | x <= 0.5 = 2*x
+       | x <= 1 = 2*(1-x)
+       | otherwise = 0
+```
 
 GHCI (Glasgow Haskell Compiler Interact)
 
