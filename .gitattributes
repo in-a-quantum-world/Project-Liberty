@@ -1,0 +1,2 @@
+# Keep my own README when merging from upstream (requires: git config merge.ours.driver true)
+README.md merge=ours
