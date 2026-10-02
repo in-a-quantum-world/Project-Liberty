@@ -39,6 +39,10 @@ square :: Integer -> Integer
 square n
        | n < 0 = undefined
        | otherwise = n*n
+--when passing stuff into haskell it is worth being aware of how the function is actually evalauted
+--haskell will substitute the thing passed immediately into the function in the exact form that it occured in
+
+--eg square(1+2) = (1+2)*(1+2)
 
 
 add :: Integer -> Integer -> Integer
@@ -56,3 +60,13 @@ ignore :: Integer -> Integer
 ignore _  = 2
 --this will take an integer as an input, ignore it entirely and return 2 regardless of the integer input
 --obviously you will get a type error if you enter anything that is not an integer
+
+
+factorial :: Integer -> Integer
+
+factorial 1 = 1
+factorial n
+          | n < 0 = undefined
+          | otherwise = n*factorial(n-1)
+
+
