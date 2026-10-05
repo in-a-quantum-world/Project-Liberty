@@ -47,6 +47,8 @@ gcd a b
 -- Pre: m >= 1. (phi 1 = 1 since gcd 1 1 = 1.)
 phi :: Int -> Int
 phi m
+    | m < 0  = error "prerequisitie that m is less than one not satisfied"
+    | otherwise = [x | x <- [1.. m], gcd x m == 1]
     
 
 -- Extended Euclid. Returns the Bezout coefficients (u, v) such that
@@ -91,7 +93,8 @@ modPow a k m
 -- Pre: x >= 1
 smallestCoPrimeOf :: Int -> Int
 smallestCoPrimeOf x
-  = undefined
+                  | x < 0 = error "prerequisite not satisfied"
+                  | 
 
 -- Generates RSA key pairs (public, private) = ((e, n), (d, n))
 -- from two distinct primes p and q:
