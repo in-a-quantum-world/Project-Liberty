@@ -24,6 +24,7 @@ Any expression will boil down to a value or a function applied to a value
 - **Normal evaluation**:
   - First the function is evalauted, then x is evalauted, if need be.
   - Looks up definition of the function before it proceeds.
+  - Haskell typically uses this
 - **Applicative (strict) evaluation**: .
   - Argument x is evaluated first then f is applied to the result.
   - May be seemingly faster as it takes fewer steps (in this example)
@@ -52,3 +53,41 @@ square(1+2) --go to the definition of fucntion first
 = 3 * 3
 = 9
 ```
+
+
+```Haskell
+two :: Integer -> Integer
+two _ = 2
+
+infinity :: Integer 
+infinity = infinity + 1
+
+--trying to evalaute this with infinity
+
+--applicative!!
+two(infinity) --evaluate argument first whihc is infinity
+= two(infinity+1) --returns infinity, but it is recursive
+= two(infinity(infinity+1)) --this will go on infinitely
+
+--normal evaluation
+two(infinty) --go to function definition first. wait... this is just 2 so just return 2
+= 2
+```
+
+
+
+
+### Church Rossen Theorem:
+
+1. For any expression that terminates, normal evaluation will work. (Proven with Lambda Calculus
+2. If applicative and normal evaluation both termiante ==>they will agree on the value.
+
+
+
+# Questions
+
+
+
+1. Can we switch between applicative and normal evaluation??
+2. Halting problem: we dont know if a program can hat or not. there are certain thigns where we dont know if they are infinite processes or not/
+3. short circutiing ignores the rest of the cases for pattern matching??
