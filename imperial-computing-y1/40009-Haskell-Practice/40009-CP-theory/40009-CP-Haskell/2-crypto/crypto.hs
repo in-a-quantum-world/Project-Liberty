@@ -47,7 +47,7 @@ gcd a b
 -- Pre: m >= 1. (phi 1 = 1 since gcd 1 1 = 1.)
 phi :: Int -> Int
 phi m
-  = undefined
+    
 
 -- Extended Euclid. Returns the Bezout coefficients (u, v) such that
 --   a * u + b * v = gcd a b
@@ -60,7 +60,8 @@ phi m
 -- Pre: a >= 0, b >= 0
 computeCoeffs :: Int -> Int -> (Int, Int)
 computeCoeffs a b
-  = undefined
+              | a < 0 || b < 0 = computeCoeffs (abs a) (abs b)
+              | 
 
 -- Inverse of a modulo m: the x in [0, m) with a * x mod m == 1.
 -- Use computeCoeffs. Remember u may be negative; `mod` in Haskell
@@ -79,7 +80,10 @@ inverse a m
 -- Pre: 0 <= a < m, k >= 0, m >= 1
 modPow :: Int -> Int -> Int -> Int
 modPow a k m
-  = undefined
+       | (a < 0 || a >= m) || (k < 0) || (m < 1) = error "does not satisyf original constraints"
+       | 
+       | k `mod` 2 == 0  = 
+       | k `mod` 2 == 1  =
 
 -- The smallest integer e >= 2 that is coprime with the argument.
 -- Hint: a list comprehension over [2 ..] filtered by gcd, taking the
