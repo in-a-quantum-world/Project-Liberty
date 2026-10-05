@@ -169,18 +169,79 @@ identity :: forall a . a -> a --dot separates the for all part from function par
 identity x = x
 
 
+idInt :: Int -> Int
+idInt = id @Int
+
+idBool :: Bool -> Bool
+idBool = id@Bool
+
+--there is a simpler way of writing this now 
+identity :: a -> a --just signals that this is a polymoprhi function, no 'for all' needed 
+identoty x = x
 ```
 
 
+**Type application** is the idea of applying a certain type to a polymoprhic function
 
 
+### Polymorphc functions examples
+
+```Haskell
+ignore_one :: a -> b -> a
+ignore_one x y = x
+--this just ignores one of the two parameters
+
+--sort of like an alterantive
+ignore :: a -> b -> b
+ignore x y = y
+
+
+first:: (a,b) -> a
+first x y = x
+second:: (a,b) -> b
+second x y = y
+
+swap :: (a,b) -> (a,b)
+swap (x,y) = (y,x)
+
+
+
+
+--yo can also do thisusing the where clause
+unzip :: [(a,b)] -> ([a],[b])
+unzip [] = ([],[])
+
+unzip
+```
+
+All lower case types are type variables, all upper clase types are concrete types. 
+
+
+```Haskell
+($) :: (a -> b) -> a -> b
+f $ x = f x 
+-- f represents a->b
+-- f x itself has type b
+```
+
+```Haskell
+(.) ::  (a -> b) -> (b -> c) -> a -> b -> c
+(g . f) x = g(f(x))
+
+--let f(x) have type b
+-- g(f(x)) hs type c
+-- x has type a 
+```
 
 # Questions
 
 
 
 1. Can we switch between applicative and normal evaluation??
-2. Halting problem: we dont know if a program can hat or not. there are certain thigns where we dont know if they are infinite processes or not/
-3. short circutiing ignores the rest of the cases for pattern matching??
-4. when doy uo know whether to use tuples insead of eg floats? i think its something to do wtih sapce compelxity and saving memroy.
-5. helper ufnction go
+2. can you write the type definition of two diferent unctions next to each toehr, before the function definitiojs?
+3. can we use a and b as types themselves? also remember all type variable are lowercase
+4. Halting problem: we dont know if a program can hat or not. there are certain thigns where we dont know if they are infinite processes or not/
+5. short circutiing ignores the rest of the cases for pattern matching??
+6. when doy uo know whether to use tuples insead of eg floats? i think its something to do wtih sapce compelxity and saving memroy.
+7. helper ufnction go
+8. is type application only for polymorphic functions?
