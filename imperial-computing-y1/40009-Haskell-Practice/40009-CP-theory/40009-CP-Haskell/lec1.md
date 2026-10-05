@@ -1,4 +1,4 @@
-# **First Haskell Lecture!!**
+# **First Haskell Lecture!! 01/10/26**
 
 Intentional vs Extensional
 
@@ -166,7 +166,7 @@ ghci> :q
 
 ![1790868047815](image/lec1/1790868047815.png)
 
-These programming languages gain abstraction going down the list:
+These programming languages gain  abstraction going down the list:
 
 ![1790868094669](image/lec1/1790868094669.png)
 

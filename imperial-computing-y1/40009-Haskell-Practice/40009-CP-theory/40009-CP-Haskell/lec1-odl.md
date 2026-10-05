@@ -16,6 +16,7 @@ Intentional vs Extensional functions. In CS we care about what a function is doi
 
 Defined booleans: True, False. other booleans: undefined. 
 
+functions always start with their type signature. this is really important! as it shows waht data type the inputs ar ad what data tye the outputs are 
 
 Declarations: we use identifier hiker to declare a new value. eg hiker :: Integer, hiker x = 42;
 
