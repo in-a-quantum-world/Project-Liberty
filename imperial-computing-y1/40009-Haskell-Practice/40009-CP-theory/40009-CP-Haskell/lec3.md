@@ -166,7 +166,15 @@ weekend Sunday = True
 data  Natural where
       Zero :: Natural
       Succ :: Natural -> Natural
+
+--we can define our own fucntions over natural
+-- they should use the same symbols as those for floats
 ```
+
+
+
+
+
 
 
 
@@ -175,3 +183,4 @@ data  Natural where
 1. so this essentally is all dependent on the fact that (a,b) -> c is isomorphic to (a ->b ->c)
 2. when defining the type annotation of curry is ((a,b) -> c)) -> (a -> b -> c) the same as ((a,b) -> c) -> a -> b -> c? Can we write either
 3. So when we write \lambda this is sort of signalling the beginning of the function
+4. I don't really get recursive data structures. i thought succ is a function, what is zero??
