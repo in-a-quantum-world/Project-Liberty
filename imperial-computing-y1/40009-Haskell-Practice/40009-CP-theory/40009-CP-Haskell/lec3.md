@@ -1,3 +1,4 @@
+
 # **Haskell Lecture 3 - Lambda Abstraction**
 
 *"When I Use a word, it means just what I choose it to mean - neither more, nor less" -- Humpty Dumpty, Lewis Carroll*
@@ -107,13 +108,11 @@ PROVE curry . uncurry = identity function AND uncurry . curry = identity functio
 
 Not every programming language has this correspondence between a tuple and two parameters. Very few languages!
 
-
 ## (Aside): Higher order Functions
 
-Ability to express **first class functions** - functions give outputs and these outputs mean that the function (with the parameters passed) can essentailly be treated the same as actual values themselves. 
+Ability to express **first class functions** - functions give outputs and these outputs mean that the function (with the parameters passed) can essentailly be treated the same as actual values themselves.
 
 **Higher order functions** - a function that takes in a function as an argument. This relies on the key idea that
-
 
 ## Datatypes
 
@@ -127,7 +126,6 @@ data Bool where
 
 You can use this structure to define your own datatypes.
 
-
 ```Haskell
 data Day where
 	Monday :: Day
@@ -140,7 +138,6 @@ data Day where
 ```
 
 Now you can use this new data type you created to create a function.
-
 
 ```Haskell
 weekend :: Day -> Bool
@@ -158,8 +155,6 @@ weekend Sunday = True
 -- whcih is why pattern matching is preferred
 ```
 
-
-
 ## Recursive Data Structures
 
 ```Haskell
@@ -171,29 +166,25 @@ data  Natural where
 -- they should use the same symbols as those for floats
 ```
 
-
-
 ### Ad Hoc Polymorphism
 
 We cannot check every data type for equality eg functions. You can define the collatz c
 
 If equality over functions existed, then the Halting Problem would be solved, since we could compare ig a program equalled a function that was known to halt.
 
-We can't compare all values, even if tehy have the same type. Functions cannot be compared. 
-
+We can't compare all values, even if tehy have the same type. Functions cannot be compared.
 
 ### Typeclasses
 
-A type class describes a family of 
+A type class describes a family of
 
 ```Haskell
 class Eq a where
      (==) :: a -> a -> Bool
 
 -- the eq class already exists in haskell.
--- we can make natural an instance f the eq class 
+-- we can make natural an instance f the eq class
 ```
-
 
 we can make Natural an instance of this class:
 
@@ -205,7 +196,6 @@ instance Eq Natural where
        Succ m == Succ n = m == n
        Succ m == Zero = False
        Zero == Succ n = False
-       
 ```
 
 Another class is the Num class
@@ -216,31 +206,53 @@ lass Num a where
       (+) :: a -> a -> a
       (*) :: a -> a -> a
       (-) :: a -> a-> a
-
 ```
+
 You can use ghci :i Num to find the  num class and    you can use :i 42::Nums
 
-##Haskell Lists
+## Haskell Lists
 
 Everything inside a list has the same type, unlike a tuple where they can have different types (these are known as _heterogenous collections_). Lists are thus *_homogenous collections of unbounded length._*
 
+```Haskell
+[1,2,3] :: [Int]
+[3.14,1.618,6.28] :: [Float]
+[True,False,True] :: [Bool]
+
+[[],[1],[1,2]] :: [[Int]]
+
+--the following are all valid because the list provided is the emtpty list. is this polymorphic?
+[] :: [Int]
+[] :: [Bool]
+[] :: [Double]
+
+--this is also valid, because the empty list is polymorphic which is great
+[] :: [[Int]]
+[] :: [[[Int]]]
+[] :: [[[[Int]]]] --these are all valid!
+```
+
+
+
+### List Comprehension
+
+Haskell is not afraid of dealing with infinitely large lists!
+
+```Haskell
+[1..10] :: [Int]
+= [1,2,3,4,5,6,7,8,9,10]
+
+-- we can also construct lists from lists
+-- eg pythagorean triples
+
+```
+
+
 ## Questions
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 1. so this essentally is all dependent on the fact that (a,b) -> c is isomorphic to (a ->b ->c)
 2. when defining the type annotation of curry is ((a,b) -> c)) -> (a -> b -> c) the same as ((a,b) -> c) -> a -> b -> c? Can we write either
 3. So when we write \lambda this is sort of signalling the beginning of the function
 4. I don't really get recursive data structures. i thought succ is a function, what is zero??
+5. so then is the difference between a list and a set that a list is ordered adna  set is unordered?
+6. is the empty list polymorphic?
