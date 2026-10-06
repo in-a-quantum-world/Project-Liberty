@@ -236,16 +236,36 @@ Everything inside a list has the same type, unlike a tuple where they can have d
 
 ### List Comprehension
 
-Haskell is not afraid of dealing with infinitely large lists!
+Haskell is not afraid of dealing with infinitely large lists!ghci
 
 ```Haskell
 [1..10] :: [Int]
 = [1,2,3,4,5,6,7,8,9,10]
 
 -- we can also construct lists from lists
--- eg pythagorean triples
+-- eg pythagorean triples a^2 + b^2 = c^2
 
+pythagoreans :: [(Integer,Integer,Integer)]
+pythagoreans = [(a,b,c) | c <- [1..], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2]
+
+-- this is kind of three seaprate comprehensions with one final condition at the end 
+-- the final condition is a^2 + b^2 = c^2 which must be satisfied for this to be a pythagorean triple 
+-- and the comprehension is how we pick a,b,c. c is the largest side so b must be smaller than c and a must be
+--smaller than b
 ```
+
+this is what happened when I tried to generate this in ghci:
+
+![1791293514089](image/lec3/1791293514089.png)
+
+
+
+## Other Data Types: Strings, etc
+
+
+
+
+
 
 
 ## Questions
