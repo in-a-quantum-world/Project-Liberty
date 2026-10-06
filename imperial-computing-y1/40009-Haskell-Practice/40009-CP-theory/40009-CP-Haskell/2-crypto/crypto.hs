@@ -63,7 +63,7 @@ phi m
 computeCoeffs :: Int -> Int -> (Int, Int)
 computeCoeffs a b
               | a < 0 || b < 0 = computeCoeffs (abs a) (abs b)
-              | 
+              | otherwise = 0
 
 -- Inverse of a modulo m: the x in [0, m) with a * x mod m == 1.
 -- Use computeCoeffs. Remember u may be negative; `mod` in Haskell
@@ -94,7 +94,7 @@ modPow a k m
 smallestCoPrimeOf :: Int -> Int
 smallestCoPrimeOf x
                   | x < 0 = error "prerequisite not satisfied"
-                  | 
+                  | otherwise = [y | y <- [2.. x], (y >= 2 && gcd x y == 1)]
 
 -- Generates RSA key pairs (public, private) = ((e, n), (d, n))
 -- from two distinct primes p and q:
