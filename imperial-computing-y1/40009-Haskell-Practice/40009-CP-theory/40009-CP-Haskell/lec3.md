@@ -270,7 +270,25 @@ this is what happened when I tried to generate this in ghci:
 
 ## Type Synonyms
 
-A type synonym gives a type name to an existing type.
+`type`is used to create shorthand for complex types. Unlike `newtype` and `data` it does NOT create a new type. It only gives the existing type an alternative name 
+
+A type synonym gives n alterantive name to an existing type. Use these carefully as they can hide detail that we do not want to hide.
+
+We use `type` when we want the types to be interchangeable
+
+```Haskell
+type Username = String
+type Age = Int
+type Email = String
+type User = (Username,Age,Email)
+
+-- the above is a lot more usable than
+
+findUser :: [(String,Int,String)] -> String -> Int -> String
+```
+
+
+Strings are a `type alias` for a list of characters. 
 
 ## Questions
 
