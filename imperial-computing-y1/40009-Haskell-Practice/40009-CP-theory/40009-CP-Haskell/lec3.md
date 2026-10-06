@@ -210,19 +210,35 @@ instance Eq Natural where
 
 Another class is the Num class
 
+```Haskell
+c
+lass Num a where
+      (+) :: a -> a -> a
+      (*) :: a -> a -> a
+      (-) :: a -> a-> a
 
+```
+You can use ghci :i Num to find the  num class and    you can use :i 42::Nums
 
+##Haskell Lists
 
-
-You can use ghci :i Num to find the  num class and
-
-
-
-
-
-
+Everything inside a list has the same type, unlike a tuple where they can have different types (these are known as _heterogenous collections_). Lists are thus *_homogenous collections of unbounded length._*
 
 ## Questions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 1. so this essentally is all dependent on the fact that (a,b) -> c is isomorphic to (a ->b ->c)
 2. when defining the type annotation of curry is ((a,b) -> c)) -> (a -> b -> c) the same as ((a,b) -> c) -> a -> b -> c? Can we write either
