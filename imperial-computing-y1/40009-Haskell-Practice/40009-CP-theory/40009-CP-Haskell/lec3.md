@@ -201,12 +201,23 @@ instance Eq Natural where
 Another class is the Num class
 
 ```Haskell
-c
-lass Num a where
+class Num a where
       (+) :: a -> a -> a
       (*) :: a -> a -> a
       (-) :: a -> a-> a
+		      .
+              .
+              .
+      fromInteger :: Integer -> a
 ```
+
+
+
+Likewise, from Integral can be used too!
+
+
+
+
 
 You can use ghci :i Num to find the  num class and    you can use :i 42::Nums
 
