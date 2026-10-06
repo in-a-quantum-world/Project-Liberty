@@ -232,8 +232,6 @@ Everything inside a list has the same type, unlike a tuple where they can have d
 [] :: [[[[Int]]]] --these are all valid!
 ```
 
-
-
 ### List Comprehension
 
 Haskell is not afraid of dealing with infinitely large lists!ghci
@@ -258,15 +256,7 @@ this is what happened when I tried to generate this in ghci:
 
 ![1791293514089](image/lec3/1791293514089.png)
 
-
-
 ## Other Data Types: Strings, etc
-
-
-
-
-
-
 
 ## Questions
 
@@ -276,3 +266,4 @@ this is what happened when I tried to generate this in ghci:
 4. I don't really get recursive data structures. i thought succ is a function, what is zero??
 5. so then is the difference between a list and a set that a list is ordered adna  set is unordered?
 6. is the empty list polymorphic?
+7. can we define polymorphic functions with typeclasses? how?
