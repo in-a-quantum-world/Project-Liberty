@@ -173,6 +173,50 @@ data  Natural where
 
 
 
+### Ad Hoc Polymorphism
+
+We cannot check every data type for equality eg functions. You can define the collatz c
+
+If equality over functions existed, then the Halting Problem would be solved, since we could compare ig a program equalled a function that was known to halt.
+
+We can't compare all values, even if tehy have the same type. Functions cannot be compared. 
+
+
+### Typeclasses
+
+A type class describes a family of 
+
+```Haskell
+class Eq a where
+     (==) :: a -> a -> Bool
+
+-- the eq class already exists in haskell.
+-- we can make natural an instance f the eq class 
+```
+
+
+we can make Natural an instance of this class:
+
+```Haskell
+instance Eq Natural where
+       (==) :: Natural -> Natural -> Bool
+
+       Zero == Zero = True
+       Succ m == Succ n = m == n
+       Succ m == Zero = False
+       Zero == Succ n = False
+       
+```
+
+Another class is the Num class
+
+
+
+
+
+You can use ghci :i Num to find the  num class and
+
+
 
 
 
