@@ -139,27 +139,33 @@ rsaDecrypt c (d, n) = modPow c d n
 
 -- Position of a lower-case letter in the alphabet: toInt 'a' == 0
 toInt :: Char -> Int
-toInt c
-  = undefined
+toInt c = ord c - ord 'a'
 
 -- The n-th lower-case letter: toChar 0 == 'a'
 -- Pre: 0 <= n <= 25
 toChar :: Int -> Char
-toChar n
-  = undefined
+toChar n 
+       | n < 0 || n > 25 = error "position must be between 0 and 25 inclusive"
+       | otherwise = chr(ord 'a' + n)
 
 -- "Adds" two letters, wrapping round the alphabet:
 --   add 'd' 's' == 'v'   (3 + 18 = 21)
 --   add 'w' 't' == 'p'   (22 + 19 = 41, mod 26 = 15)
 add :: Char -> Char -> Char
 add c1 c2
-  = undefined
+     | c1 < 0 || c1 > 25 || c2 < 0 || c2 > 25 = error "position must be between 0 and 25 inclusive"
+     | otherwise = chr(value) 
+     where 
+      value = (ord c1 + ord c2) `mod` 26
 
 -- "Subtracts" the second letter from the first, wrapping round.
 -- (The spelling 'substract' is the one the lab uses.)
 substract :: Char -> Char -> Char
 substract c1 c2
-  = undefined
+          | c1 < 0 || c1 > 25 || c2 < 0 || c2 > 25 = error "position must be between 0 and 25 inclusive"
+          | otherwise = chr(value)
+          where
+            value = (abs(ord c1 - ord c2)) `mod` 26
 
 -- The next functions give two modes of operation for a block cipher
 -- whose block is a single letter and whose encryption function is add.
