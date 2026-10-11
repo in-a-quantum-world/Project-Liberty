@@ -63,8 +63,11 @@ phi m
 -- Pre: a >= 0, b >= 0
 computeCoeffs :: Int -> Int -> (Int, Int)
 computeCoeffs a b
-              | a < 0 || b < 0 = computeCoeffs (abs a) (abs b)
-              | otherwise = 0
+              | b == 0 = (1,0)  --base case
+              | otherwise = (v', u' - q*v')
+              where
+                (q,r) = divMod a b
+                (u', v') = computeCoeffs b r
 
 -- Inverse of a modulo m: the x in [0, m) with a * x mod m == 1.
 -- Use computeCoeffs. Remember u may be negative; `mod` in Haskell
