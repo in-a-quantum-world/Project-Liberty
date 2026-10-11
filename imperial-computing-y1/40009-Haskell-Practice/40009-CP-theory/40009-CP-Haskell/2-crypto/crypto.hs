@@ -132,8 +132,7 @@ rsaEncrypt x (e, n) = modPow x e n  --just recycling used function!
 
 -- RSA decryption: x = c^d mod n, given the private key (d, n)
 rsaDecrypt :: Int -> (Int, Int) -> Int
-rsaDecrypt c (d, n)
-  = undefined
+rsaDecrypt c (d, n) = modPow c d n
 
 -------------------------------------------------------------------------------
 -- PART 2 : symmetric encryption (block ciphers on letters)
