@@ -3,6 +3,7 @@ module Crypto where
 import Data.Char
 
 import Prelude hiding (gcd)
+import Graphics.Win32 (restoreDC)
 
 {-
   Haskell Lab 2: Cryptography
@@ -171,12 +172,14 @@ substract c1 c2
 -- ECB (electronic codebook): every letter is encrypted independently
 -- with the key k.
 ecbEncrypt :: Char -> String -> String
-ecbEncrypt k s
-  = undefined
+ecbEncrypt k s = [add c k | c <- s] --applies key to every character
+-- the comprehension takes each character c from s and encrypts it using add c k 
+-- and then collects the results in order
 
+
+--undo addition for eevery character
 ecbDecrypt :: Char -> String -> String
-ecbDecrypt k s
-  = undefined
+ecbDecrypt k s = [subtract c k | c <- s]
 
 -- CBC (cipher block chaining): each plaintext letter is first added to
 -- the PREVIOUS ciphertext letter (or the initialisation vector iv for
@@ -184,13 +187,24 @@ ecbDecrypt k s
 --   c_0 = add (add m_0 iv) k
 --   c_i = add (add m_i c_(i-1)) k
 -- Arguments are key, iv, message.
+--GO BACK ADN TRY TO UNDERSTAN THIS!!!
 cbcEncrypt :: Char -> Char -> String -> String
-cbcEncrypt k iv s
-  = undefined
+cbcEncrypt k iv [] = []
+
+cbcEncrypt iv (first : rest) = 
+  encrypted : cbc Encrypt k encrypted rest  --puts this at the front 
+  where 
+    encrypted = add (add first iv) k
+
+
 
 cbcDecrypt :: Char -> Char -> String -> String
-cbcDecrypt k iv s
-  = undefined
+cbcDecrypt k iv [] = []
+
+cbcDecrypt k iv (first : rest) =
+    decrypted : cbcDecrypt k first rest
+    where
+        decrypted = substract (substract first k) iv
 
 -------------------------------------------------------------------------------
 -- EXTENSION
@@ -217,6 +231,9 @@ secretMsg = "reysebxkknyoxebeudhueebuhdofdtggqkhslwmvmizvkgdikkrgtpcclneappqzsfm
 -- Give it the most general type signature you can, replacing the one
 -- below. (Hint: it has no constraint at all.) This is the shape of
 -- computation that CBC performs when decrypting.
-pairUp :: [Int] -> [(Int, Int)]
-pairUp xs
-  = undefined
+pairUp :: [a] -> [(a, a)]
+pairUp [] = []
+pairUp [_] = []
+
+pairUp (first : second : rest) =
+    (first, second) : pairUp (second : rest)
