@@ -128,7 +128,7 @@ genKeys p q = ((e,n), (d,n))  --((public exponent, mdulus),(private exponent, mp
 
 -- RSA encryption: c = x^e mod n, given the public key (e, n)
 rsaEncrypt :: Int -> (Int, Int) -> Int
-rsaEncrypt x (e, n) = modPow x e n  --just recycling used function
+rsaEncrypt x (e, n) = modPow x e n  --just recycling used function!
 
 -- RSA decryption: x = c^d mod n, given the private key (d, n)
 rsaDecrypt :: Int -> (Int, Int) -> Int
