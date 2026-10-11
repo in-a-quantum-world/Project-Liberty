@@ -48,7 +48,8 @@ gcd a b
 phi :: Int -> Int
 phi m
     | m < 0  = error "prerequisitie that m is less than one not satisfied"
-    | otherwise = [x | x <- [1.. m], gcd x m == 1]
+    | otherwise = length([x | x <- [1.. m], gcd x m == 1])
+
     
 
 -- Extended Euclid. Returns the Bezout coefficients (u, v) such that
