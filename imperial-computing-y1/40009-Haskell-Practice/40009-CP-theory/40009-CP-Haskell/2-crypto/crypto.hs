@@ -96,7 +96,7 @@ modPow a k m
 smallestCoPrimeOf :: Int -> Int
 smallestCoPrimeOf x
                   | x < 0 = error "prerequisite not satisfied"
-                  | otherwise = [y | y <- [2.. x], (y >= 2 && gcd x y == 1)]
+                  | otherwise = [y | y <- [2.. x], (y >= 2 && gcd x y == 1)] --find the smallest item in the list comprehension
 
 -- Generates RSA key pairs (public, private) = ((e, n), (d, n))
 -- from two distinct primes p and q:
