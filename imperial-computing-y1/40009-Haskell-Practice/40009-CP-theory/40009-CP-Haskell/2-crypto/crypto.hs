@@ -105,7 +105,7 @@ modPow a k m
 smallestCoPrimeOf :: Int -> Int
 smallestCoPrimeOf x
                   | x < 1 = error "prerequisite not satisfied since x needs to be >= 1"
-                  | otherwise = head([y | y <- [2.. x], (y >= 2 && gcd x y == 1)]) --find the smallest item in the list comprehension
+                  | otherwise = head([y | y <- [2.. ], (y >= 2 && gcd x y == 1)]) --find the smallest item in the list comprehension
 
 
 
