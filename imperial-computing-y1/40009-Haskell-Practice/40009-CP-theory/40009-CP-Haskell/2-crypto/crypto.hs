@@ -90,10 +90,13 @@ inverse a m
 -- Pre: 0 <= a < m, k >= 0, m >= 1
 modPow :: Int -> Int -> Int -> Int
 modPow a k m
-       | (a < 0 || a >= m) || (k < 0) || (m < 1) = error "does not satisyf original constraints"
-       | 
-       | k `mod` 2 == 0  = 
-       | k `mod` 2 == 1  =
+       | a < 0 || k < 0 || m < 1 = error "a >= 0, k >= 0 and m >= 1 all needed satisfied"
+       | k == 0 =  1 `mod` m --since any number to the power of 0 is 1
+       | k `mod` 2 == 0  = modPow squaredBase( k `div` 2) m
+       | otherwise = (base * modPow base (k-1) m) `mod` m   --remove one factor since exponent is odd
+       where
+        base = a `mod` m
+        squaredBase = (base * base) `mod` m
 
 -- The smallest integer e >= 2 that is coprime with the argument.
 -- Hint: a list comprehension over [2 ..] filtered by gcd, taking the
