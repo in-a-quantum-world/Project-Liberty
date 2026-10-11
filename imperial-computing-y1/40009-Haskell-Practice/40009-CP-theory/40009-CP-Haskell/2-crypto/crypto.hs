@@ -107,7 +107,8 @@ smallestCoPrimeOf x
                   | x < 1 = error "prerequisite not satisfied since x needs to be >= 1"
                   | otherwise = head([y | y <- [2.. ], (y >= 2 && gcd x y == 1)]) --find the smallest item in the list comprehension
 
-
+--haskell uses lazy evaluation which means an infinite list can work in this case!
+-- this means it checks candidates only until it finds the first match and doesnt actually construct the entire infinite list
 
 
 -- Generates RSA key pairs (public, private) = ((e, n), (d, n))
@@ -116,13 +117,18 @@ smallestCoPrimeOf x
 --   e = smallestCoPrimeOf ((p - 1) * (q - 1))
 --   d = inverse e ((p - 1) * (q - 1))
 genKeys :: Int -> Int -> ((Int, Int), (Int, Int))
-genKeys p q
-  = undefined
+genKeys p q = ((e,n), (d,n))  --((public exponent, mdulus),(private exponent, mpdulus))
+    where 
+      n = p * q   --assuming p and q are distinct primes?
+      totient = (p-1) * (q-1)
+      e = smallestCoPrimeOf totient
+      d = inverse e totient
+
+
 
 -- RSA encryption: c = x^e mod n, given the public key (e, n)
 rsaEncrypt :: Int -> (Int, Int) -> Int
-rsaEncrypt x (e, n)
-  = undefined
+rsaEncrypt x (e, n) = modPow x e n  --just recycling used function
 
 -- RSA decryption: x = c^d mod n, given the private key (d, n)
 rsaDecrypt :: Int -> (Int, Int) -> Int
