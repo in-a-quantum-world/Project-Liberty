@@ -47,7 +47,7 @@ gcd a b
 -- Pre: m >= 1. (phi 1 = 1 since gcd 1 1 = 1.)
 phi :: Int -> Int
 phi m
-    | m < 0  = error "prerequisitie that m is less than one not satisfied"
+    | m < 1  = error "prerequisitie that m is less than one not satisfied"
     | otherwise = length([x | x <- [1.. m], gcd x m == 1])
 
     
