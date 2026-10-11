@@ -152,20 +152,18 @@ toChar n
 --   add 'd' 's' == 'v'   (3 + 18 = 21)
 --   add 'w' 't' == 'p'   (22 + 19 = 41, mod 26 = 15)
 add :: Char -> Char -> Char
-add c1 c2
-     | c1 < 0 || c1 > 25 || c2 < 0 || c2 > 25 = error "position must be between 0 and 25 inclusive"
-     | otherwise = chr(value) 
+add c1 c2 = toChar value 
      where 
-      value = (ord c1 + ord c2) `mod` 26
+      value = (toInt c1 + toInt c2) `mod` 26
 
 -- "Subtracts" the second letter from the first, wrapping round.
 -- (The spelling 'substract' is the one the lab uses.)
 substract :: Char -> Char -> Char
 substract c1 c2
-          | c1 < 0 || c1 > 25 || c2 < 0 || c2 > 25 = error "position must be between 0 and 25 inclusive"
+          | c1 < 'a' || c1 > 'z' || c2 < 'a' || c2 > 'z' = error "position must be between 0 and 25 inclusive"
           | otherwise = chr(value)
           where
-            value = (abs(ord c1 - ord c2)) `mod` 26
+            value = (ord c1 - ord c2) `mod` 26
 
 -- The next functions give two modes of operation for a block cipher
 -- whose block is a single letter and whose encryption function is add.
