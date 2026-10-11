@@ -72,7 +72,8 @@ computeCoeffs a b
 -- Pre: gcd a m == 1
 inverse :: Int -> Int -> Int
 inverse a m
-  = undefined
+        | gcd a m == 1  = computeCoeffs a m
+        | otherwise = error "prerequisite that the gcd is 1, so they need to be coprime!" 
 
 -- Fast modular exponentiation: a^k mod m.
 -- Do NOT compute a^k and then reduce: it overflows Int for the test
