@@ -1,4 +1,3 @@
-
 # **Lecture 4**
 
 Monomorphic lists (not very useful)
@@ -144,8 +143,6 @@ drop n [] = []
 drop n (x:xs) = drop (n-1) xs
 ```
 
-
-
 ## The BangBang function
 
 Extracts an element from a lsit. Writen as !!
@@ -161,7 +158,36 @@ Extracts an element from a lsit. Writen as !!
 (x:xs) !! n = xs !! (n-1)
 ```
 
+## Accummulating parameters
 
+helps to define reverse function by quite literally accummulating parameters.
+
+
+```Haskell
+reverse [3,4,5] = [5,4,3]
+
+reverse :: [a] -> [a]
+reverse [] = []
+reverse (x:xs) = reversed_list ++ [x] --this x needs to be written as a singleton list
+where 
+   reversed_list = reverse xs
+   --can you perhasp define another function i si tnecessay?
+   --curently appending goes throught he whole of the list and adds to the end
+   --this can be done more efficiently
+
+
+--append does recursion ont he first argument so has time complexity O(n^2), poor performances
+
+reverse' :: [a] -> [a]
+reverse' xs = go xs []
+where 
+    go :: [a] -> [a] -> [a]
+    go [] ys = []
+    go (x:xs) ys = go xs ++ (x:ys) --putting the origianl front on the front of the second list, which will also be reversed
+    --so it will end up at the end anway
+    --its easier to view this wih stacks
+
+```
 
 ## Questions
 
