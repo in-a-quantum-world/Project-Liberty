@@ -90,7 +90,15 @@ inverse a m
 -- Pre: 0 <= a < m, k >= 0, m >= 1
 modPow :: Int -> Int -> Int -> Int
 modPow a k m
-  = undefined
+       | a > m || a < 0 || m < 1 || k < 0 = error "does not satisyf the original requirements"
+       | k == 0 = 1 `mod` m 
+
+       | k `mod` 2 == 0 = modPow squaredBase(k `div` 2) m 
+       | otherwise = (base * modPow base (k-1) m) `mod` m --removing one factor since the exponent is odd
+       where 
+        base = a `mod` m 
+        squaredBase = (bsae * base) `mod` m
+
 
 -- The smallest integer e >= 2 that is coprime with the argument.
 -- Hint: a list comprehension over [2 ..] filtered by gcd, taking the
@@ -98,7 +106,10 @@ modPow a k m
 -- Pre: x >= 1
 smallestCoPrimeOf :: Int -> Int
 smallestCoPrimeOf x
-  = undefined
+                  | x < 1 = error "x needs to be >= 1"
+                  | otherwise = smallest 
+                  where
+                    smallest = head([y | y <- [2..], gcd x y == 1])
 
 -- Generates RSA key pairs (public, private) = ((e, n), (d, n))
 -- from two distinct primes p and q:
