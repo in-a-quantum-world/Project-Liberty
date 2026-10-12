@@ -125,13 +125,11 @@ genKeys p q = ((e,n), (d,n))
 
 -- RSA encryption: c = x^e mod n, given the public key (e, n)
 rsaEncrypt :: Int -> (Int, Int) -> Int
-rsaEncrypt x (e, n)
-  = undefined
+rsaEncrypt x (e, n) = modPow x e n 
 
 -- RSA decryption: x = c^d mod n, given the private key (d, n)
 rsaDecrypt :: Int -> (Int, Int) -> Int
-rsaDecrypt c (d, n)
-  = undefined
+rsaDecrypt c (d, n) = modPow c d n
 
 -------------------------------------------------------------------------------
 -- PART 2 : symmetric encryption (block ciphers on letters)
@@ -139,20 +137,26 @@ rsaDecrypt c (d, n)
 -- Position of a lower-case letter in the alphabet: toInt 'a' == 0
 toInt :: Char -> Int
 toInt c
-  = undefined
+      | c < 'a' || c > 'z' = error "this is not a lower case letter in the alphabet"
+      | otherwise = ord(c) - ord('a')
 
 -- The n-th lower-case letter: toChar 0 == 'a'
 -- Pre: 0 <= n <= 25
 toChar :: Int -> Char
 toChar n
-  = undefined
+       | n < 0 || n > 25 = error "does not satisyf the necessary conditions for this"
+       | otherwise = chr n 
 
 -- "Adds" two letters, wrapping round the alphabet:
 --   add 'd' 's' == 'v'   (3 + 18 = 21)
 --   add 'w' 't' == 'p'   (22 + 19 = 41, mod 26 = 15)
 add :: Char -> Char -> Char
 add c1 c2
-  = undefined
+    | c1 < 0 || c1 > 25 || c2 < 0 || c2 > 25  = error "does not satisfy requried conditions"
+    | otherwise = new_char
+    where 
+        v = (c1 + c2) mod 26
+        new_char =  chr v
 
 -- "Subtracts" the second letter from the first, wrapping round.
 -- (The spelling 'substract' is the one the lab uses.)
