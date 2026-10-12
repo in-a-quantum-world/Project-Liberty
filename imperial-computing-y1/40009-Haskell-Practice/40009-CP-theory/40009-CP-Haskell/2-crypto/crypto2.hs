@@ -117,8 +117,11 @@ smallestCoPrimeOf x
 --   e = smallestCoPrimeOf ((p - 1) * (q - 1))
 --   d = inverse e ((p - 1) * (q - 1))
 genKeys :: Int -> Int -> ((Int, Int), (Int, Int))
-genKeys p q
-  = undefined
+genKeys p q = ((e,n), (d,n))
+        where 
+            n = p*q
+            e = smallestCoPrimeOf((p-1)*(q-1))
+            d = inverse e ((p-1)*(q-1))
 
 -- RSA encryption: c = x^e mod n, given the public key (e, n)
 rsaEncrypt :: Int -> (Int, Int) -> Int
