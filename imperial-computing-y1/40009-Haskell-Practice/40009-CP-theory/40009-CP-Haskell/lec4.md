@@ -141,8 +141,27 @@ take n (x:xs) = x : take (n-1) xs
 drop :: Int -> [a] -> [a]
 drop 0 xs = xs
 drop n [] = []
-drop n (x:xs) = drop n-1 (xs)
+drop n (x:xs) = drop (n-1) xs
 ```
+
+
+
+## The BangBang function
+
+Extracts an element from a lsit. Writen as !!
+
+```Haskell
+[3,1,4,1,5] !! 0 = 3
+[3,1,4,1,5] !! 2 = 4
+--this function is highly dangerous since you can bangbang a number which is larger than length of list
+
+(!!) [a] -> Int -> a
+[] !! _ = error "the list is empty "
+(x:xs) !! 0 = x
+(x:xs) !! n = xs !! (n-1)
+```
+
+
 
 ## Questions
 
