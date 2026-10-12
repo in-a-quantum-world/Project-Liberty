@@ -98,6 +98,7 @@ sum (x:xs) = x + sum xs
 
 
 --lengt of list
+--polymorphic and works for any type!
 length :: [a] -> Int
 length [] = 0
 length(x:xs) = 1 + length xs
@@ -108,9 +109,13 @@ length(x:xs) = 1 + length xs
 ## Append function
 
 ```Haskell
+--this is defining an operator
+--thus when pattern amthcing it appears in the middle and not at the front
+--since it is an operator and the inputs need to be operated upon!
+
 (++) :: [a] -> [a] -> [a]
 [] ++ ys = ys
-(x:xs) ++ ys = 
+(x:xs) ++ ys = x:(xs ++ ys)
 ```
 
 
@@ -135,3 +140,4 @@ length(x:xs) = 1 + length xs
 4. the second[x:y:zs], does zsx alsways indictae many other items follow? like any type name ending in a s does this??? so what about just the type name 's'
 5. <:+>
 6. triples and tuples alow differnt types, not lists. lists are homogenous
+7. why does list comrehension not really work on floats?

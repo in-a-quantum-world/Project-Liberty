@@ -1,4 +1,3 @@
-
 # **Haskell Lecture 3 - Lambda Abstraction**
 
 *"When I Use a word, it means just what I choose it to mean - neither more, nor less" -- Humpty Dumpty, Lewis Carroll*
@@ -240,7 +239,7 @@ Everything inside a list has the same type, unlike a tuple where they can have d
 
 ### List Comprehension
 
-Haskell is not afraid of dealing with infinitely large lists!ghci
+Haskell is not afraid of dealing with infinitely large lists! Note that this does notwork well with floats. 
 
 ```Haskell
 [1..10] :: [Int]
@@ -264,13 +263,9 @@ this is what happened when I tried to generate this in ghci:
 
 ## Other Data Types: Strings, etc
 
-
-
-
-
 ## Type Synonyms
 
-`type`is used to create shorthand for complex types. Unlike `newtype` and `data` it does NOT create a new type. It only gives the existing type an alternative name 
+`type`is used to create shorthand for complex types. Unlike `newtype` and `data` it does NOT create a new type. It only gives the existing type an alternative name
 
 A type synonym gives n alterantive name to an existing type. Use these carefully as they can hide detail that we do not want to hide.
 
@@ -287,8 +282,7 @@ type User = (Username,Age,Email)
 findUser :: [(String,Int,String)] -> String -> Int -> String
 ```
 
-
-Strings are a `type alias` for a list of characters. 
+Strings are a `type alias` for a list of characters.
 
 ## Questions
 
