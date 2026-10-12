@@ -1,9 +1,7 @@
 
-# **Lecture 4** 
-
+# **Lecture 4**
 
 Monomorphic lists (not very useful)
-
 
 ```Haskell
 data ListInt where 
@@ -16,7 +14,6 @@ Cons 3 (Cons 5 Empty) :: ListInt
 
 ideally we want lists to be poolymorphic to any type.
 
-
 The followng code can be used to cosntuct a list of 'a's
 
 ```Haskell
@@ -24,8 +21,6 @@ data [a] where --this is a new type, this is what it meas to be a list of 'a's
      [] :: [a] --this is the empty list
      (:) :: a -> [a] -> [a]  --definition of Cons (like cosnectuve element)
 ```
-
-
 
 ## Anatomy of list
 
@@ -37,12 +32,12 @@ So we could write: 3 : 4 : 5 : [ ]  =  3 : 4 : [5]  =  3 : [4,5]   =  [3,4,5]
 
 To generate functions you nee to be able to pattern match on lists.
 
-
 ### Head, Tail
 
 ```Haskell
 --apaprently these are not valid ways of deconstructing a list 
 --because.... whyb do they return integers??
+-- recommedned to use isempty() function instead 
 
 head :: [a] -> Bool
 head (x:xs) = x  --the front item in the list
@@ -52,6 +47,84 @@ tail :: [a] -> [a]
 tail (x:xs) = xs  --the rest of the list
 ```
 
+These are dangerous because head[ ] and tail[ ] applied to the emtpy list causes an error
+
+```Haskell
+isEmpty :: [a] -> Bool
+isEmpty [] = True
+isEmpty _ = False
+
+--you could use pattern matching with guards instead
+```
+
+```Haskell
+isSingle :: [a] -> Bool
+
+--oyu can use pattern matching directy 
+--since
+isSingle[x] = True
+isSingle _ = False
+
+
+--not a well defined function since no mapping for empty list, one element list 
+second :: [a] -> a
+--extract th second value of the list
+--deep pattern match
+second[x,y] = y
+second[x:y:zs] = y
+```
+
+
+
+
+### Empty List
+
+Every type actually has an empty list.
+
+```Haskell
+[] :: [Int]
+[] :: [Bool]
+[] :: [Float]
+
+--and so on.
+```
+
+## Recursion over Lists
+
+```Haskell
+sum :: [Int] -> Int
+sum [] = 0
+sum (x:xs) = x + sum xs
+
+
+--lengt of list
+length :: [a] -> Int
+length [] = 0
+length(x:xs) = 1 + length xs
+```
+
+
+
+## Append function
+
+```Haskell
+(++) :: [a] -> [a] -> [a]
+[] ++ ys = ys
+(x:xs) ++ ys = 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Questions
@@ -59,8 +132,6 @@ tail (x:xs) = xs  --the rest of the list
 1. pythagorean list comprehesion appears slow but it is an enumeration of an infinite number of values. kind of like infinite for loops.
 2. can a type inherit form another type: yes
 3. can you createa  primr numer type using int type - very hard
-
-
-
-1. <:+>
+4. the second[x:y:zs], does zsx alsways indictae many other items follow? like any type name ending in a s does this??? so what about just the type name 's'
+5. <:+>
 6. triples and tuples alow differnt types, not lists. lists are homogenous
