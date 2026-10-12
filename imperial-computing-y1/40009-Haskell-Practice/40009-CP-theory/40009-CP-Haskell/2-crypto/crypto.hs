@@ -158,7 +158,6 @@ add c1 c2 = toChar value
       value = (toInt c1 + toInt c2) `mod` 26
 
 -- "Subtracts" the second letter from the first, wrapping round.
--- (The spelling 'substract' is the one the lab uses.)
 substract :: Char -> Char -> Char
 substract c1 c2
           | c1 < 'a' || c1 > 'z' || c2 < 'a' || c2 > 'z' = error "position must be between 0 and 25 inclusive"
@@ -179,7 +178,7 @@ ecbEncrypt k s = [add c k | c <- s] --applies key to every character
 
 --undo addition for eevery character
 ecbDecrypt :: Char -> String -> String
-ecbDecrypt k s = [subtract c k | c <- s]
+ecbDecrypt k s = [substract c k | c <- s]
 
 -- CBC (cipher block chaining): each plaintext letter is first added to
 -- the PREVIOUS ciphertext letter (or the initialisation vector iv for
@@ -189,7 +188,7 @@ ecbDecrypt k s = [subtract c k | c <- s]
 -- Arguments are key, iv, message.
 --GO BACK ADN TRY TO UNDERSTAN THIS!!!
 cbcEncrypt :: Char -> Char -> String -> String
-cbcEncrypt k iv [] = []
+-- cbcEncrypt k iv [] = []
 
 cbcEncrypt iv (first : rest) = 
   encrypted : cbc Encrypt k encrypted rest  --puts this at the front 
