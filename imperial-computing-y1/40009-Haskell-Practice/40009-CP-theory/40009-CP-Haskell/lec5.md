@@ -94,7 +94,6 @@ filter p [] = []
 filter p (x:xs) 
        | p x = x : filter xs
        | otherwise = filter p xs
-
 ```
 
 
@@ -137,8 +136,38 @@ zip _ _ = []
 
 ```Haskell
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
-zipWith (x:xs) (y:ys) (z:zs) = 9
+zipWith (x:xs) (y:ys) = f x y : zipWith f xs ys
+zipWith _ _ _ = []
+
 ```
+
+We can also define zip using zipWith
+
+```Haskell
+zip xs ys = zipWith (\x y -> (x,y)) xs ys
+
+--or even we could write more concisely:
+zip = zipWith(\x y -> (x,y))
+```
+
+
+
+### Comma operator
+
+```Haskell
+(,) :: a -> b -> (a,b)
+(,) x y = (x,y)
+```
+
+
+Unzip function
+
+```Haskell
+unzip :: [(a,b)] -> ([a],[b])
+unzip [] = ([],[])
+unzip ((x,y): xys) = (x:)
+```
+
 
 Questions
 
