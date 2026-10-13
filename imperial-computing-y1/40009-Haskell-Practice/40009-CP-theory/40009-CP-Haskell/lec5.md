@@ -138,7 +138,6 @@ zip _ _ = []
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith (x:xs) (y:ys) = f x y : zipWith f xs ys
 zipWith _ _ _ = []
-
 ```
 
 We can also define zip using zipWith
@@ -160,16 +159,61 @@ zip = zipWith(\x y -> (x,y))
 ```
 
 
-Unzip function
+### Unzip function
 
 ```Haskell
 unzip :: [(a,b)] -> ([a],[b])
 unzip [] = ([],[])
-unzip ((x,y): xys) = (x:)
+unzip ((x,y): xys) = (x:xs, y:ys)
+      where 
+          (xs,ys) = unzip(x,y)
 ```
 
 
-Questions
+
+
+## Concat
+
+Another useful function on lists is the concat function (name is slightly misleading from other languages! we just squash everything into one 1D list)
+
+```Haskell
+concat :: [[a]] -> [a]
+concat [] = []
+concat (xs:xss) = xs ++ concat xss
+```
+
+
+
+## Fold function
+
+A lot fo these functions we have looked at cn actually be implemented with fold functions, where you have to go from left to right or vice versa, performing an operation iteratively.
+
+```Haskell
+sum :: [Int] -> Int
+sum [] = []
+sum (x:xs) = x + sum xs
+
+--here all the items in the list are being added together 
+```
+
+
+
+What the function is actually doing
+
+```Haskell
+--given a list
+xs = [x1, x2, ... , xn]
+   = x1: x2: ... : xn:[]
+```
+
+
+
+```Haskell
+foldr :: (a -> b -> b) -> b -> [a] -> b
+```
+
+## Questions
 
 1. in the zip example, were you assuming that both were the same legnth? because if one is longre is the other you are dropping the elements from the other --- yes thats what we do
 2. zipWith???
+3. is the reprrestnation of the list of x1:...: xn just a binary tree
