@@ -234,9 +234,26 @@ product = foldr (*) D
 
 
 
+### Using foldr to define map
+
+```Haskell
+map :: (a->b) -> [a] -> [b]
+map f xs = foldr gv[]
+    where 
+       g :: a -> [b] -> [b]
+       g x ys = f x:ys
+```
 
 
 
+Fold-map fusion
+
+```Haskell
+foldr f k . map g = foldr (f . g) k
+
+
+
+```
 
 
 
@@ -246,3 +263,6 @@ product = foldr (*) D
 2. zipWith???
 3. is the reprrestnation of the list of x1:...: xn just a binary tree
 4. for the sum function why is the parameter missing?? Why is there no parameter given in the definition
+5. fold left vs fold right
+6. is there some sort of hierarchy for these functions? like we can constrct map from fold
+   1. can you define foldr in terms of map? like you transform each of the elements first then combine?
