@@ -80,7 +80,7 @@ The idea of filters has already been seen from list comprehenisons.
 [ x | x <- xs, p x]
 --this basically says the list contains all x such that the function p(x) is satisfied
 -- xs is the list that is being 'comprehended from'
--- i.e. the list from which we are checking each element. 
+-- i.e. the list from which we are checking each element.
 ```
 
 
@@ -111,3 +111,36 @@ any p (x:xs)
     | p x = True
     | otherwise = any p xs
 ```
+
+
+
+## Zip function
+
+
+
+A zip functions pairs the elements form two lists in order:
+
+```Haskell
+zip :: [a] -> [b] -> [(a,b)]
+
+zip (x:xs) (y:ys) = (x,y) : zip xs ys
+
+--if eithre xs or ys or btoh are empty then this means that we 
+--need to return empty since one or both have run out of terms
+--so we cannot construct any more of the pairs 
+zip _ _ = []
+--this just stops us from going through aaall the empty versions 
+
+--this is not the same as doing the cartesian product 
+```
+
+
+```Haskell
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith (x:xs) (y:ys) (z:zs) = 9
+```
+
+Questions
+
+1. in the zip example, were you assuming that both were the same legnth? because if one is longre is the other you are dropping the elements from the other --- yes thats what we do
+2. zipWith???
