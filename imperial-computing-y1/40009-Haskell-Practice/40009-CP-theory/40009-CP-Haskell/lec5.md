@@ -210,10 +210,39 @@ xs = [x1, x2, ... , xn]
 
 ```Haskell
 foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr f k [] = k
+
+
+foldr f k (x:xs) = f x (foldr f k xs)
 ```
+
+
+
+Now we have a better definition of sum
+
+```Haskell
+--you can pass an operator as a function
+-- but it must be included in brackets
+
+sum :: [Int] -> Int
+sum = foldr (+) D
+
+
+product :: [Int] -> Int
+product = foldr (*) D
+```
+
+
+
+
+
+
+
+
 
 ## Questions
 
 1. in the zip example, were you assuming that both were the same legnth? because if one is longre is the other you are dropping the elements from the other --- yes thats what we do
 2. zipWith???
 3. is the reprrestnation of the list of x1:...: xn just a binary tree
+4. for the sum function why is the parameter missing?? Why is there no parameter given in the definition
