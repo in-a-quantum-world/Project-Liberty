@@ -100,7 +100,7 @@ length [] = 0
 length(x:xs) = 1 + length xs
 ```
 
-## Append function
+### Append function
 
 ```Haskell
 --this is defining an operator
@@ -122,7 +122,7 @@ length(x:xs) = 1 + length xs
 (x:xs) ++ (y:ys) = x:(xs ++ (y:ys))
 ```
 
-## Take, Drop
+### Take, Drop
 
 Take will take the first n elements of the list, drop will remove the first n elements of the list.
 
@@ -143,7 +143,7 @@ drop n [] = []
 drop n (x:xs) = drop (n-1) xs
 ```
 
-## The BangBang function
+### The BangBang function
 
 Extracts an element from a lsit. Writen as !!
 
@@ -158,7 +158,7 @@ Extracts an element from a lsit. Writen as !!
 (x:xs) !! n = xs !! (n-1)
 ```
 
-## Accummulating parameters
+### Accummulating parameters
 
 helps to define reverse function by quite literally accummulating parameters.
 
@@ -176,18 +176,35 @@ where
    --this can be done more efficiently
 
 
+
+
 --append does recursion ont he first argument so has time complexity O(n^2), poor performances
 
+
+--the following is O(n)
 reverse' :: [a] -> [a]
-reverse' xs = go xs []
+reverse' xs = go xs [] --go is a tail recursive function
 where 
     go :: [a] -> [a] -> [a]
     go [] ys = []
-    go (x:xs) ys = go xs ++ (x:ys) --putting the origianl front on the front of the second list, which will also be reversed
+    go (x:xs) ys = go xs (x:ys) --putting the origianl front on the front of the second list, which will also be reversed
     --so it will end up at the end anway
     --its easier to view this wih stacks
-
 ```
+
+
+
+## Mapping
+
+used to apply a function to all items in a list
+
+```Haskell
+map :: (a -> b) -> [a] -> [b]
+map f [] = []
+map f (x:xs) = f x : map f xs
+```
+
+
 
 ## Questions
 
@@ -201,3 +218,5 @@ where
 8. for defining the ++ operator, and doingnthe base case withthe empty set, is [ ] ++ ys = ys the same as ys ++ [ ] = ys
    1. so when we are defining the oeprator how do we define its commutativity???
 9. when defining take can you do x ++ take n-1 xs isntead of x : take n-1 xs
+10. why cant uou do reverse xs: x
+    1. because the type of (:) is a -> [a] -> [a] so the first type is type a, not a list of type as, so x would need to be the first param intput
