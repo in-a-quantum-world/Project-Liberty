@@ -1,4 +1,4 @@
-# **Lecture 6**
+# **Lecture 5**
 
 *"To understand recursion, one must understand recursion"*
 
@@ -193,7 +193,7 @@ sum :: [Int] -> Int
 sum [] = []
 sum (x:xs) = x + sum xs
 
---here all the items in the list are being added together 
+--here all the items in the list are being added together
 ```
 
 
