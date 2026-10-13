@@ -1,3 +1,5 @@
+
+
 # **Lecture 5**
 
 *"To understand recursion, one must understand recursion"*
@@ -130,7 +132,7 @@ zip (x:xs) (y:ys) = (x,y) : zip xs ys
 zip _ _ = []
 --this just stops us from going through aaall the empty versions 
 
---this is not the same as doing the cartesian product 
+--this is not the same as doing the cartesian product
 ```
 
 
@@ -250,7 +252,6 @@ map f xs = foldr gv[]
 
 ```Haskell
 foldr f k . map g = foldr (f . g) k
-
 ```
 
 
@@ -268,6 +269,56 @@ or xs = foldr (||) False
 ```
 
 
+
+## ***Proof of Fold-map fusion by Induction
+
+Using inductionf or the rppof, we need to come up with our inductive hypothesis, which is:
+
+```Haskell
+(foldr f k . map g) xs = (foldr (f . g) k) xs
+```
+
+
+
+BAse case is alwasy the empty list which is great for me
+
+```Haskell
+LHS = (foldr f k . map g) []
+    = foldr f k (map g [])
+    = foldr f k []
+    = k   --byt he definition of foldr
+
+RHS = (foldr (f . g) k) []
+    = foldr (f . g) k []
+    = k --be definition of foldr
+
+    
+```
+
+Inductive hypothesis: assume 
+
+```Haskell
+--assume the following as the inductive hypothesis
+(foldr f k . map g) xs = (foldr (f . g) k) xs
+
+
+--and thsu the following needs to be proven
+(foldr f k . map g) (x:xs) = (foldr (f . g) k) (x:xs)
+```
+
+
+
+Proving this using the inductive hypothesis
+
+```Haskell
+LHS = (foldr f k . map g) (x:xs)
+    = foldr f k (map g (x:xs))
+    = foldr f k (g x : map g xs)
+    = f (g x) (foldr f k (map g xs)) 
+
+RHS = foldr (f . g) k (x:xs) -- foldr
+    =  f . g) x) (foldr (f . g) k xs)
+```
 
 
 
