@@ -246,14 +246,32 @@ map f xs = foldr gv[]
 
 
 
-Fold-map fusion
+### Fold-map fusion
 
 ```Haskell
 foldr f k . map g = foldr (f . g) k
 
-
-
 ```
+
+
+
+```Haskell
+any :: (a -> Bool) -> [a] -> Bool
+any p xs = (or . map xs) xs
+
+--or can also be defined with a foldr
+or :: [Bool] -> Bool
+or xs = foldr (||) False
+
+-- a seemingly bovious definition
+--sort of tautological since we are using or within itself...
+```
+
+
+
+
+
+
 
 
 
