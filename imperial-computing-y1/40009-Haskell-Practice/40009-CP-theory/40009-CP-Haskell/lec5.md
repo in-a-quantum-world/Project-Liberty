@@ -70,3 +70,29 @@ map g (map f xs) = map gf xs
 
 
 This is called map fusion and is done by the compiler where it can otpimise the code.
+
+
+## Filters
+
+The idea of filters has already been seen from list comprehenisons.
+
+```Haskell
+[ x | x <- xs, p x]
+--this basically says the list contains all x such that the function p(x) is satisfied
+-- xs is the list that is being 'comprehended from'
+-- i.e. the list from which we are checking each element. 
+```
+
+
+We can actually define a filter function
+
+```Haskell
+filter :: (a -> Bool) -> [a] -> [a]
+-- a -> Bool represents a function ('predicate') whcih will return true or false for each eleemnt
+
+filter p [] = []
+filter p (x:xs) 
+       | p x = x : filter xs
+       | otherwise = filter p xs
+
+```
