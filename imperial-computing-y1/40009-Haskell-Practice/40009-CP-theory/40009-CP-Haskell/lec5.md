@@ -96,3 +96,18 @@ filter p (x:xs)
        | otherwise = filter p xs
 
 ```
+
+
+```Haskell
+--this function returns true if even one of the things is satisfied
+--else it returns false if none are satisfied
+
+any :: (a -> Bool) -> [a] -> [Bool]
+
+--this will be false ibecause if the program has reached this stage
+-- it means all fo the previous elements would have been false
+any p [] = False
+any p (x:xs)
+    | p x = True
+    | otherwise = any p xs
+```
