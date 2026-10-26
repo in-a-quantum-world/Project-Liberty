@@ -13,8 +13,6 @@ infinity :: Integer
 infinity = infinity + 1
 ```
 
-
-
 ## Evaluation
 
 Evaluation is the process of generating/reducing to a value of from an expression. ***Infininty does not give you such a value.** *
@@ -28,8 +26,6 @@ Any expression will boil down to a value or a function applied to a value
 - **Applicative (strict) evaluation**: .
   - Argument x is evaluated first then f is applied to the result.
   - May be seemingly faster as it takes fewer steps (in this example)
-
-
 
 ```Haskell
 square :: Integer -> Integer
@@ -54,7 +50,6 @@ square(1+2) --go to the definition of fucntion first
 = 9
 ```
 
-
 ```Haskell
 two :: Integer -> Integer
 two _ = 2
@@ -74,13 +69,10 @@ two(infinty) --go to function definition first. wait... this is just 2 so just r
 = 2
 ```
 
-
 ### Church Rossen Theorem:
 
 1. For any expression that terminates, normal evaluation will work. (Proven with Lambda Calculus
 2. If applicative and normal evaluation both termiante ==>they will agree on the value.
-
-
 
 ## Tail Recursion
 
@@ -102,8 +94,7 @@ collatz n
 - Tail recursion actually means that once you have the function call, ou don't need to do any extra computation at that step, whcih saves time and space complexity a lot of the times.
 - If any function call requires extra work, it is not a tail recursive function.
 
-*Tail recursion is very efficient*, often we want to make a recursiec function tail recursive for the sake of efficiency. Infintiyy function is not tail recursive. 
-
+*Tail recursion is very efficient*, often we want to make a recursiec function tail recursive for the sake of efficiency. Infintiyy function is not tail recursive.
 
 ```Haskell
 --tail recursive loop
@@ -112,13 +103,11 @@ undefined :: Int
 undefined = undefined
 ```
 
-
-
 ## Some New Data Types
 
 ### Tuples
 
-Some computations can output multiple values at tthe same time. 
+Some computations can output multiple values at tthe same time.
 
 ```Haskell
 roots :: Double -> Double -> Double-> (Double,Double)
@@ -134,16 +123,15 @@ where
     (d,e) = (sqrt(b*b - 4*a*c),2*a)
 ```
 
-
 ### Fun Facts about Tuples
 
-What is really cool is that pairs in a tuple do not necessarily need to have the same type. Tuples can also contain tuples. 
+What is really cool is that pairs in a tuple do not necessarily need to have the same type. Tuples can also contain tuples.
 
 Triples exist too of form (type, type, type)
 
-*Tuples have a limit of 64 items?? (like a tuple with 64 items). Tuples are unordered.* 
+*Tuples have a limit of 64 items?? (like a tuple with 64 items). Tuples are unordered.*
 
-Haskell also allows tuples to have 0 or 1 elements. 
+Haskell also allows tuples to have 0 or 1 elements.
 
 * ( ) is called a unit
 * (type) is called a singleton
@@ -153,11 +141,9 @@ dist :: (Float,Float) -> (Float,Float) -> Float
 dist (x0,y0) (x1,y1) = sqrt((x0-x1)^2 + (y0-y1)^2)
 ```
 
-
-
 ## Polymorphism
 
-In the case we want a function to operate over different types. Known as polymorphism. Eg addition, multiplication, exponent.  
+In the case we want a function to operate over different types. Known as polymorphism. Eg addition, multiplication, exponent.
 
 ```Haskell
 --important function ig 
@@ -180,9 +166,7 @@ identity :: a -> a --just signals that this is a polymoprhi function, no 'for al
 identoty x = x
 ```
 
-
 **Type application** is the idea of applying a certain type to a polymoprhic function
-
 
 ### Polymorphc functions examples
 
@@ -214,8 +198,7 @@ unzip [] = ([],[])
 unzip
 ```
 
-All lower case types are type variables, all upper clase types are concrete types. 
-
+All lower case types are type variables, all upper clase types are concrete types.
 
 ```Haskell
 ($) :: (a -> b) -> a -> b
@@ -230,15 +213,13 @@ f $ x = f x
 
 --let f(x) have type b
 -- g(f(x)) hs type c
--- x has type a 
+-- x has type a
 ```
 
 # Questions
 
-
-
 1. Can we switch between applicative and normal evaluation??
-2. can you write the type definition of two diferent unctions next to each toehr, before the function definitiojs?
+2. can you write the type definition of two diferent unctions next to each toehr, before the function definitiojs? No.
 3. can we use a and b as types themselves? also remember all type variable are lowercase
 4. Halting problem: we dont know if a program can hat or not. there are certain thigns where we dont know if they are infinite processes or not/
 5. short circutiing ignores the rest of the cases for pattern matching??
