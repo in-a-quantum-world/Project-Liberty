@@ -1,7 +1,5 @@
 # **Lecture 7**
 
-*Reconstructed from the year-above notes and the lab 3 and 4 code. This is the lecture the Calculus lab depends on.*
-
 So far all the types have been built in: Int, Char, Bool, lists, tuples. This lecture is about defining your own, and about type classes, which are how `==` and `+` manage to work on more than one type.
 
 ## User-defined data types

@@ -1,7 +1,5 @@
 # **Lecture 6**
 
-*Reconstructed from the year-above notes and the lab 3 and 4 code, since I missed this one. Topics in the order they are likely to have been taught.*
-
 Last lecture ended with foldr and the fold-map fusion proof. This lecture finishes folds (foldl, strictness, scans) and then looks at the tools for building functions out of other functions: composition, application, currying, sections, point-free style.
 
 ## Foldr recap
